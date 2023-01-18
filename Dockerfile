@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /content
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y libgl1 libglib2.0-0 wget git git-lfs python3-pip python-is-python3 && pip3 install --upgrade pip
-RUN pip install https://github.com/camenduru/stable-diffusion-webui-colab/releases/download/0.0.15/xformers-0.0.16+814314d.d20230118-cp310-cp310-linux_x86_64.whl
+RUN pip install https://github.com/camenduru/stable-diffusion-webui-colab/releases/download/0.0.16/xformers-0.0.16+814314d.d20230118-cp310-cp310-linux_x86_64.whl
 RUN pip install --pre triton
 RUN pip install numexpr
 
