@@ -15,10 +15,9 @@ ADD https://raw.githubusercontent.com/camenduru/stable-diffusion-webui-scripts/m
 RUN git clone https://github.com/camenduru/deforum-for-automatic1111-webui /content/stable-diffusion-webui/extensions/deforum-for-automatic1111-webui
 RUN git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser /content/stable-diffusion-webui/extensions/stable-diffusion-webui-images-browser
 RUN git clone https://github.com/camenduru/stable-diffusion-webui-huggingface /content/stable-diffusion-webui/extensions/stable-diffusion-webui-huggingface
-RUN git clone https://github.com/Vetchems/sd-civitai-browser /content/stable-diffusion-webui/extensions/sd-civitai-browser
+RUN git clone https://github.com/camenduru/sd-civitai-browser /content/stable-diffusion-webui/extensions/sd-civitai-browser
 
-ADD https://huggingface.co/andite/anything-v4.0/resolve/main/anything-v4.5-pruned.ckpt /content/stable-diffusion-webui/models/Stable-diffusion/anything-v4.5-pruned.ckpt
-ADD https://huggingface.co/andite/anything-v4.0/resolve/main/anything-v4.0.vae.pt /content/stable-diffusion-webui/models/Stable-diffusion/anything-v4.5-pruned.vae.pt
+ADD https://huggingface.co/ckpt/anything-v3-vae-swapped/resolve/main/anything-v3-vae-swapped.ckpt /content/stable-diffusion-webui/models/Stable-diffusion/anything-v3-vae-swapped.ckpt
 
 RUN adduser --disabled-password --gecos '' user
 RUN chown -R user:user /content
@@ -27,4 +26,4 @@ USER user
 
 EXPOSE 7860
 
-CMD python --version && cd /content/stable-diffusion-webui && python webui.py --xformers --listen
+CMD cd /content/stable-diffusion-webui && python webui.py --xformers --listen --enable-insecure-extension-access
