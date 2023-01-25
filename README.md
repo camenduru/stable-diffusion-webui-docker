@@ -6,6 +6,10 @@ https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu
 ## 🐳 Web UI Docker
 https://github.com/camenduru/stable-diffusion-webui-docker
 
+## Xformers
+For the correct xformers wheel, please check https://github.com/camenduru/stable-diffusion-webui-colab/releases<br />
+or build with the same VM `pip wheel git+https://github.com/facebookresearch/xformers#egg=xformers` <br />
+
 ## Stable Diffusion Web UI
 [https://github.com/AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui).
 
