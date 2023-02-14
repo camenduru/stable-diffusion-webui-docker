@@ -28,7 +28,6 @@ RUN git clone https://github.com/camenduru/sd-webui-additional-networks /content
 ADD https://huggingface.co/ckpt/anything-v3-vae-swapped/resolve/main/anything-v3-vae-swapped.ckpt /content/stable-diffusion-webui/models/Stable-diffusion/anything-v3-vae-swapped.ckpt
 
 RUN adduser --disabled-password --gecos '' user
-RUN chown -R user:user /content
 RUN chmod -R 777 /content
 USER user
 
