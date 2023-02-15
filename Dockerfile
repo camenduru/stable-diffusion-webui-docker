@@ -19,6 +19,7 @@ RUN pip install --pre triton
 RUN pip install numexpr
 
 RUN git clone -b v1.6 https://github.com/camenduru/stable-diffusion-webui
+RUN sed -i '$a fastapi==0.90.0' /content/stable-diffusion-webui/requirements_versions.txt
 RUN sed -i -e '''/prepare_environment()/a\    os.system\(f\"""sed -i -e ''\"s/dict()))/dict())).cuda()/g\"'' /content/stable-diffusion-webui/repositories/stable-diffusion-stability-ai/ldm/util.py""")''' /content/stable-diffusion-webui/launch.py
 RUN sed -i -e 's/    start()/    #start()/g' /content/stable-diffusion-webui/launch.py
 RUN cd stable-diffusion-webui && python launch.py --skip-torch-cuda-test
