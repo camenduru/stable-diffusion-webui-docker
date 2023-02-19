@@ -4,9 +4,6 @@
 https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/devel/cudnn8/Dockerfile <br />
 https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/base/Dockerfile
 
-## 🐳 Web UI Docker
-https://github.com/camenduru/stable-diffusion-webui-docker
-
 ## Xformers
 For the correct xformers wheel, please check https://github.com/camenduru/stable-diffusion-webui-colab/releases<br />
 or build with the same VM `pip wheel git+https://github.com/facebookresearch/xformers#egg=xformers` <br />
