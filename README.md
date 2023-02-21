@@ -1,4 +1,5 @@
-🐣 Please follow me for new updates https://twitter.com/camenduru
+🐣 Please follow me for new updates https://twitter.com/camenduru <br />
+🔥 Please join our discord server https://discord.gg/k5BwmmvJJU
 
 ## 🐳 Base Docker
 https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/devel/cudnn8/Dockerfile <br />
