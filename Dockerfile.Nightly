@@ -34,4 +34,4 @@ ADD --chown=user https://huggingface.co/ckpt/anything-v4.5-vae-swapped/resolve/m
 
 EXPOSE 7860
 
-CMD cd /content/stable-diffusion-webui && python webui.py --xformers --listen --enable-insecure-extension-access
+CMD cd /content/stable-diffusion-webui && python webui.py --xformers --listen --enable-insecure-extension-access --gradio-queue
