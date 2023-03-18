@@ -1,10 +1,6 @@
 🐣 Please follow me for new updates https://twitter.com/camenduru <br />
 🔥 Please join our discord server https://discord.gg/k5BwmmvJJU
 
-## 🐳 Base Docker
-https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/devel/cudnn8/Dockerfile <br />
-https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/base/Dockerfile
-
 ## Xformers
 For the correct xformers wheel, please check https://github.com/camenduru/stable-diffusion-webui-colab/releases<br />
 or build with the same VM `pip wheel git+https://github.com/facebookresearch/xformers#egg=xformers` <br />
@@ -27,3 +23,7 @@ or build with the same VM `pip wheel git+https://github.com/facebookresearch/xfo
 
 ## Models License
 https://huggingface.co/spaces/CompVis/stable-diffusion-license
+
+## 🐳 Base Docker
+https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/devel/cudnn8/Dockerfile <br />
+https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/base/Dockerfile
