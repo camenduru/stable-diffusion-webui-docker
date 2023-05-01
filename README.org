@@ -95,3 +95,67 @@ sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 #+end_src
 
+** Sorolla Style
+
+*** Model
+[[Oil painting][https://civitai.com/models/20184/oil-painting]] 5.57GB
+- Checkpoint of a Stable Diffusion 1.5 model trained with oil paintings
+
+*** Usage
+**** WebGUI
+[[Github Repostitory][https://github.com/AUTOMATIC1111/stable-diffusion-webui]]
+[[Instructions for installation on Apple Silicon][https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Installation-on-Apple-Silicon]]
+
+- To use the Oil Model place it in the =models/Stable-diffusion= folder.
+
+*Parametters used in the experiment*
+- [[Used image in tests][https://del.h-cdn.co/assets/17/07/3200x3200/square-1487365300-delish-ryan-gosling-getty-pascal.jpg]]
+- Text prompt: "An oil painting portrait by joaquin sorolla."
+- CFG Scale: ~18
+  - Controls balance between text prompt and image, 0 means no text prompt effect.
+- Denoising Strenght: ~0.12
+  - Determines how little respect the algorithm should have for image's content. At 0, nothing will change, and at 1 you'll get an unrelated image [[Ref][https://www.mayerdan.com/software/2023/02/27/making-book-covers-with-img2img#:~:text=Stable%20Diffusion%20Denoising%20Strength%20is,the%20Sampling%20Steps%20slider%20specifies]]
+  - Values arround 0.25 give results with a more solid background, less importance of the original backgound
+- Other parametters are left on deffault (sampling steps 20; batch count 1; batch size 1; width & height 512)
+
+
+Alternatively the code can be executed directly from the command line using the Official Stable Diffusion Github repo or the optimized version
+
+**** Official Repo
+[[Github Repostitory][https://github.com/CompVis/stable-diffusion.git]]
+
+**** Optimization
+[[Github Repostitory][https://github.com/basujindal/stable-diffusion]]
+
+This repo is a modified version of the Stable Diffusion repo, optimized to use less VRAM than the original by sacrificing inference speed.
+
+*All the modified files are in the =optimizedSD= folder, so if you have already cloned the original repository you can just download and copy this folder into the original instead of cloning the entire repo*. You can also clone this repo and follow the same installation steps as the original (mainly creating the conda environment and placing the weights at the specified location).
+
+Perform img2img with optimizedSD scripts:
+
+#+begin_src shell
+  python optimizedSD/optimized_img2img.py --prompt "<prompt>" --init-img "<init image path>" --outdir "<otuput directory>" --ckpt "<model checkpoint>" --strength 0.12 --scale 18 --n_samples 1 --n_iter 1 --H 512 --W 512
+#+end_src
+
+*To use the =oilPainting_oilPaintingV10.safetensors= model with the original repo or the optimized version it must be converted to `.ckpt` file.* 
+
+**** Convert safetensor to ckpt
+[[Github Repostitory][https://github.com/diStyApps/Safe-and-Stable-Ckpt2Safetensors-Conversion-Tool-GUI]]
+
+Install the missing requirements to the stable diffusion environment
+#+begin_src shell
+pip install safetensors
+pip install PySimpleGUI
+#+end_src
+
+Run GUI
+#+begin_src shell
+python run_app_gui.py
+#+end_src
+
+Browse to the folder with the =oilPainting_oilPaintingV10.safetensors=, select it and click =Convert File=, the result file will be created in the same folder as the original one.
+
+With all this steps, the command executed to replicate the same results as in the webgui in may look like:
+#+begin_src shell
+python optimizedSD/optimized_img2img.py --prompt "An oil painting portrait by joaquin sorolla." --init-img "input_images/square-1487365300-delish-ryan-gosling-getty-pascal.jpg" --outdir "outputs/stable-diffusion-tests/ryan_gosling_oil_model_test_replication" --ckpt "models/Stable-diffusion/oilPainting_oilPaintingV10.ckpt" --strength 0.12 --scale 18 --n_samples 1 --n_iter 1 --H 512 --W 512
+#+end_src
