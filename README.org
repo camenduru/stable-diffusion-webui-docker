@@ -1,3 +1,20 @@
+** Running Instructions
+To execute the Docker container run 
+#+begin_src shell
+docker-compose build
+docker-compose up
+#+end_src
+
+The command
+#+begin_src shell
+docker-compose up --build
+#+end_src
+may result in:
+#+begin_src shell
+OSError: Can't load tokenizer for 'openai/clip-vit-large-patch14'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure 'openai/clip-vit-large-patch14' is the correct path to a directory containing all relevant files for a CLIPTokenizer tokenizer.
+#+end_src
+
+
 🐣 Please follow me for new updates https://twitter.com/camenduru <br />
 🔥 Please join our discord server https://discord.gg/k5BwmmvJJU
 

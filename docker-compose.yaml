@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  style-model:
+    build:
+      context: .
+      dockerfile: Dockerfile.Lite
+    command: python webui.py --xformers --listen --enable-insecure-extension-access --gradio-queue --api
+    ports:
+      - 7860:7860
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: 1
+            capabilities: [gpu]
