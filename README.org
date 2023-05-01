@@ -1,0 +1,161 @@
+🐣 Please follow me for new updates https://twitter.com/camenduru <br />
+🔥 Please join our discord server https://discord.gg/k5BwmmvJJU
+
+`lite` has a stable WebUI and stable installed extensions. <br />
+`stable` has ControlNet, a stable WebUI, and stable installed extensions. <br />
+`nightly` has ControlNet, the latest WebUI, and daily installed extension updates. <br />
+
+** Stable Diffusion Web UI
+[[https://github.com/AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+
+** Stable Diffusion Web UI Colab
+[https://github.com/camenduru/stable-diffusion-webui-colab](https://github.com/camenduru/stable-diffusion-webui-colab)
+
+** Documentation
+[https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki).
+
+** Installed Extensions
+[https://github.com/deforum-art/deforum-for-automatic1111-webui](https://github.com/deforum-art/deforum-for-automatic1111-webui) <br />
+[https://github.com/yfszzx/stable-diffusion-webui-images-browser](https://github.com/yfszzx/stable-diffusion-webui-images-browser) <br />
+[https://github.com/camenduru/stable-diffusion-webui-huggingface](https://github.com/camenduru/stable-diffusion-webui-huggingface) <br />
+[https://github.com/Vetchems/sd-civitai-browser](https://github.com/Vetchems/sd-civitai-browser) <br />
+[https://github.com/kohya-ss/sd-webui-additional-networks](https://github.com/kohya-ss/sd-webui-additional-networks) <br />
+
+** Installed Scripts
+[https://github.com/camenduru/stable-diffusion-webui-scripts/blob/main/run_n_times.py](https://github.com/camenduru/stable-diffusion-webui-scripts/blob/main/run_n_times.py) <br />
+
+** Models License
+https://huggingface.co/spaces/CompVis/stable-diffusion-license
+
+** 🐳 Base Docker
+https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/devel/cudnn8/Dockerfile <br />
+https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/base/Dockerfile
+
+** Xformers
+For the correct xformers wheel, please check https://github.com/camenduru/stable-diffusion-webui-colab/releases<br />
+or build with the same VM `pip wheel git+https://github.com/facebookresearch/xformers#egg=xformers` <br />
+
+** Install CUDA toolkit
+
+Uninstall previous version
+https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#removing-cuda-toolkit-and-driver
+
+Download and install new
+https://developer.nvidia.com/cuda-downloads
+
+** Install nvidia-container-toolkit
+
+#+begin_src shell
+  # Add nvidia toolkit repo to apt get
+  distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+      && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+      && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
+            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+  # update and install 
+  sudo apt-get update
+
+  # install nvidia-cotainer-toolkit
+  sudo apt-get install -y nvidia-container-toolkit-base
+
+  # check version 
+  nvidia-ctk --version
+
+  # Generate a CDI specification that refers to all devices
+  sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
+
+  # Check name of the created devices
+  sudo grep "  name:" /etc/cdi/nvidia.yaml
+#+end_src
+
+Install Docker
+#+begin_src shell
+curl https://get.docker.com | sh \
+  && sudo systemctl --now enable docker
+#+end_src
+
+Configure the Docker daemon to recognize the NVIDIA Container Runtime:
+#+begin_src shell
+sudo nvidia-ctk runtime configure --runtime=docker
+
+# Restart Docker
+sudo systemctl restart docker
+#+end_src
+
+If after all this process the following error appears:
+#+begin_src shell
+docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
+#+end_src
+
+Repeat this steps:
+#+begin_src shell
+sudo nvidia-ctk runtime configure --runtime=docker
+
+# Restart Docker
+sudo systemctl restart docker
+#+end_src
+
+** Sorolla Style
+
+*** Model
+[[Oil painting][https://civitai.com/models/20184/oil-painting]] 5.57GB
+- Checkpoint of a Stable Diffusion 1.5 model trained with oil paintings
+
+*** Usage
+**** WebGUI
+[[Github Repostitory][https://github.com/AUTOMATIC1111/stable-diffusion-webui]]
+[[Instructions for installation on Apple Silicon][https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Installation-on-Apple-Silicon]]
+
+- To use the Oil Model place it in the =models/Stable-diffusion= folder.
+
+*Parametters used in the experiment*
+- [[Used image in tests][https://del.h-cdn.co/assets/17/07/3200x3200/square-1487365300-delish-ryan-gosling-getty-pascal.jpg]]
+- Text prompt: "An oil painting portrait by joaquin sorolla."
+- CFG Scale: ~18
+  - Controls balance between text prompt and image, 0 means no text prompt effect.
+- Denoising Strenght: ~0.12
+  - Determines how little respect the algorithm should have for image's content. At 0, nothing will change, and at 1 you'll get an unrelated image [[Ref][https://www.mayerdan.com/software/2023/02/27/making-book-covers-with-img2img#:~:text=Stable%20Diffusion%20Denoising%20Strength%20is,the%20Sampling%20Steps%20slider%20specifies]]
+  - Values arround 0.25 give results with a more solid background, less importance of the original backgound
+- Other parametters are left on deffault (sampling steps 20; batch count 1; batch size 1; width & height 512)
+
+
+Alternatively the code can be executed directly from the command line using the Official Stable Diffusion Github repo or the optimized version
+
+**** Official Repo
+[[Github Repostitory][https://github.com/CompVis/stable-diffusion.git]]
+
+**** Optimization
+[[Github Repostitory][https://github.com/basujindal/stable-diffusion]]
+
+This repo is a modified version of the Stable Diffusion repo, optimized to use less VRAM than the original by sacrificing inference speed.
+
+*All the modified files are in the =optimizedSD= folder, so if you have already cloned the original repository you can just download and copy this folder into the original instead of cloning the entire repo*. You can also clone this repo and follow the same installation steps as the original (mainly creating the conda environment and placing the weights at the specified location).
+
+Perform img2img with optimizedSD scripts:
+
+#+begin_src shell
+  python optimizedSD/optimized_img2img.py --prompt "<prompt>" --init-img "<init image path>" --outdir "<otuput directory>" --ckpt "<model checkpoint>" --strength 0.12 --scale 18 --n_samples 1 --n_iter 1 --H 512 --W 512
+#+end_src
+
+*To use the =oilPainting_oilPaintingV10.safetensors= model with the original repo or the optimized version it must be converted to `.ckpt` file.* 
+
+**** Convert safetensor to ckpt
+[[Github Repostitory][https://github.com/diStyApps/Safe-and-Stable-Ckpt2Safetensors-Conversion-Tool-GUI]]
+
+Install the missing requirements to the stable diffusion environment
+#+begin_src shell
+pip install safetensors
+pip install PySimpleGUI
+#+end_src
+
+Run GUI
+#+begin_src shell
+python run_app_gui.py
+#+end_src
+
+Browse to the folder with the =oilPainting_oilPaintingV10.safetensors=, select it and click =Convert File=, the result file will be created in the same folder as the original one.
+
+With all this steps, the command executed to replicate the same results as in the webgui in may look like:
+#+begin_src shell
+python optimizedSD/optimized_img2img.py --prompt "An oil painting portrait by joaquin sorolla." --init-img "input_images/square-1487365300-delish-ryan-gosling-getty-pascal.jpg" --outdir "outputs/stable-diffusion-tests/ryan_gosling_oil_model_test_replication" --ckpt "models/Stable-diffusion/oilPainting_oilPaintingV10.ckpt" --strength 0.12 --scale 18 --n_samples 1 --n_iter 1 --H 512 --W 512
+#+end_src
