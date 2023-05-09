@@ -14,8 +14,8 @@ WORKDIR /content
 USER user
 
 RUN pip3 install --upgrade pip
-RUN pip install --pre xformers
-RUN pip install --pre triton
+RUN pip install xformers==0.0.16
+RUN pip install triton==2.0.0
 RUN pip install numexpr
 
 RUN git clone -b v1.9 https://github.com/camenduru/stable-diffusion-webui
