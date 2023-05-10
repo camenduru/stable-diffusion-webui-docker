@@ -35,7 +35,7 @@ RUN cd stable-diffusion-webui && python launch.py --skip-torch-cuda-test
 
 RUN pip install --pre xformers
 
-ADD --chown=user https://huggingface.co/ckpt/sd15/resolve/main/v1-5-pruned-emaonly.ckpt /content/stable-diffusion-webui/models/Stable-diffusion/v1-5-pruned-emaonly.ckpt
+ADD --chown=user https://civitai.com/api/download/models/23979 /content/stable-diffusion-webui/models/Stable-diffusion/oilPainting_oilPaintingV10.safetensors
 
 WORKDIR /content/stable-diffusion-webui
 
