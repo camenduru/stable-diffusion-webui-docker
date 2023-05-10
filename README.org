@@ -19,7 +19,7 @@ https://developer.nvidia.com/cuda-downloads
   sudo apt-get update
 
   # install nvidia-cotainer-toolkit
-  sudo apt-get install -y nvidia-container-toolkit-base
+  sudo apt-get install -y nvidia-container-toolkit
 
   # check version 
   nvidia-ctk --version
