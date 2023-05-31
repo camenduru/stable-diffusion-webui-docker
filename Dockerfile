@@ -37,6 +37,9 @@ RUN pip install --pre xformers
 
 ADD --chown=user https://civitai.com/api/download/models/23979 /content/stable-diffusion-webui/models/Stable-diffusion/oilPainting_oilPaintingV10.safetensors
 
+ADD --chown=user download_models_if_missing.sh /content/stable-diffusion-webui/download_models_if_missing.sh
+RUN chmod +x /content/stable-diffusion-webui/download_models_if_missing.sh
+
 WORKDIR /content/stable-diffusion-webui
 
 EXPOSE 7860
