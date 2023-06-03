@@ -4,7 +4,7 @@ services:
   style-model:
     build:
       context: .
-      dockerfile: Dockerfile.Lite
+      dockerfile: Dockerfile
     command: python webui.py --xformers --listen --enable-insecure-extension-access --gradio-queue --api
     ports:
       - 7860:7860

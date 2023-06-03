@@ -1,4 +1,4 @@
-# Dockerfile.Lite
+# Dockerfile
 
 # https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/devel/cudnn8/Dockerfile
 # FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu22.04
