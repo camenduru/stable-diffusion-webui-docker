@@ -18,4 +18,4 @@ RUN git clone -b v2.6 https://github.com/camenduru/stable-diffusion-webui && \
     python launch.py --skip-torch-cuda-test && \
     git reset --hard
 
-CMD cd /content/stable-diffusion-webui && python launch.py --cors-allow-origins=* --xformers --listen --theme dark --api
+CMD cd /content/stable-diffusion-webui && python launch.py --cors-allow-origins=* --xformers --listen --theme dark --api --no-download-sd-model
