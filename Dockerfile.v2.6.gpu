@@ -19,5 +19,5 @@ RUN git clone -b v2.6 https://github.com/camenduru/stable-diffusion-webui && \
     python launch.py --skip-torch-cuda-test && \
     git reset --hard
 
-RUN aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/ckpt/sd15/resolve/main/v1-5-pruned-emaonly.ckpt -d /content/stable-diffusion-webui/models/Stable-diffusion -o v1-5-pruned-emaonly.ckpt
+# RUN aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/ckpt/sd15/resolve/main/v1-5-pruned-emaonly.ckpt -d /content/stable-diffusion-webui/models/Stable-diffusion -o v1-5-pruned-emaonly.ckpt
 CMD cd /content/stable-diffusion-webui && python launch.py --xformers --cors-allow-origins=* --api
