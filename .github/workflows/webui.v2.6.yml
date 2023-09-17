@@ -29,8 +29,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile.v2.6.cudnn8
+          file: ./Dockerfile.v2.6.gpu
           no-cache: true
           push: true
-          tags: camenduru/webui:v2.6.cudnn8
+          tags: camenduru/webui:v2.6.gpu
 
